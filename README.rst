@@ -21,4 +21,14 @@ Dependencies
 
     * Tkinter
 
+Usage
+~~~~~
+
+   | Move up             ==> Up arrow
+   | Move down           ==> Down arrow
+   | Move left           ==> Left arrow
+   | Move right          ==> Right arrow
+   | Increase speed ==> Numpad +
+   | Decrease speed ==> Numpad -
+
 .. |demo| image:: http://s20.postimg.org/oc8finb9p/tetris.png

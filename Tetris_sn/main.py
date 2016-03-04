@@ -1,6 +1,6 @@
 import Tkinter as tk
 
-from Tetris_sn.gui import AppWin, Shape
+from gui import AppWin, Shape
 
 NORMAL = 0
 PAUSED = 1
