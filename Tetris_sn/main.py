@@ -1,4 +1,5 @@
 import Tkinter as tk
+import tkMessageBox
 
 from gui import AppWin, Shape
 
@@ -10,7 +11,9 @@ class Tetris(AppWin):
     def __init__(self):
         AppWin.__init__(self)
         self.bind('<Key>', self.handleEvents)
+
         self.gameMode= NORMAL
+        self.gameRunning = True
         self.level = 0
         self.speed = 500
         self.counter = 0
@@ -39,6 +42,9 @@ class Tetris(AppWin):
 
             self.current_shape = Shape(self.canvas)
             if self.is_game_over():
+                tkMessageBox.showinfo(
+                    "Game Over",
+                    "You scored %d points." % self.score)
                 self.onNewGame()
                 return
 
@@ -48,11 +54,12 @@ class Tetris(AppWin):
                 if self.gameMode == NORMAL:
                     self.speed -= 20
                 self.counter = 0
-        if not self.gameMode == PAUSED:
+        if (not self.gameMode == PAUSED) and (self.gameRunning == True):
             self.timeLoop = self.after(self.speed, self.timer)
         self.updateLabels()
 
     def handleEvents(self, event):
+        if event.keysym == "p": self.changeState()
         if event.keysym == "Left": self.current_shape.move(-1, 0)
         if event.keysym == "Right": self.current_shape.move(1, 0)
         if event.keysym == "Up" and self.current_shape.color != 'yellow':
@@ -99,7 +106,17 @@ class Tetris(AppWin):
                                     (self.level, self.score))
         modes = ['N', 'P', 'CS']
         self.modeLabel.config(text='%s' % modes[self.gameMode])
+        self.pauseLabel.update()
 
+    def changeState(self):
+        if self.gameMode != PAUSED:
+            if self.gameRunning:
+                self.gameRunning = False
+                self.pauseLabel.config(text='paused')
+            else:
+                self.gameRunning = True
+                self.pauseLabel.config(text='')
+                self.timer()
 
 if __name__ == '__main__':
     game = Tetris()

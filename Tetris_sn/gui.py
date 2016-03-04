@@ -46,8 +46,10 @@ class AppWin(tk.Tk):
         self.scoreLabel = tk.Label(self.mainFrame,
                                    text='This is the score bar',
                                    font=AppWin.MENU_FONTS)
-        # self.scoreLabel.pack(anchor='w')
         self.scoreLabel.pack(side='left')
+        self.pauseLabel = tk.Label(self.mainFrame, text='', width=10,
+                                   font=AppWin.MENU_FONTS)
+        self.pauseLabel.pack(side='left')
         self.modeLabel = tk.Label(self.mainFrame, text='', relief='ridge',
                                   borderwidth=2, justify='center',
                                   anchor='center')

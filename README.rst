@@ -28,6 +28,7 @@ Usage
    | Move down           ==> Down arrow
    | Move left           ==> Left arrow
    | Move right          ==> Right arrow
+   | Pause               ==> p (not in paused mode)
    | Increase speed ==> Numpad +
    | Decrease speed ==> Numpad -
 
